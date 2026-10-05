@@ -1,4 +1,4 @@
-![Veritas AI Demo](./Screenshot (334).png)
+![Veritas AI Demo](Screenshot (334).png)
 # Veritas AI — Grounded RAG Document Intelligence System
 
 A production-grade Retrieval-Augmented Generation (RAG) system engineered to eliminate LLM hallucinations by enforcing strict evidence grounding, page-level metadata tracking, and verbatim source citations.

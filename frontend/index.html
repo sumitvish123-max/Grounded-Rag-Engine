@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Veritas AI – Answers with receipts</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar" aria-label="Documents and system info">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <div>
+          <h1>Veritas</h1>
+          <p>Every answer comes with its source.</p>
+        </div>
+      </div>
+
+      <section class="panel">
+        <h2>Documents</h2>
+        <input type="file" id="file-input" accept="application/pdf,.pdf" hidden />
+        <button type="button" id="upload-btn" class="btn-primary">Upload a PDF</button>
+
+        <div id="status" class="status" data-state="idle" role="status" aria-live="polite">
+          <span class="status-dot" aria-hidden="true"></span>
+          <span id="status-text">Waiting for a document</span>
+        </div>
+
+        <ul id="doc-list" class="doc-list" aria-label="Indexed documents"></ul>
+      </section>
+
+      <section class="panel">
+        <h2>How it works</h2>
+        <dl class="stack">
+          <div><dt>Embeddings</dt><dd>all-MiniLM-L6-v2 (local)</dd></div>
+          <div><dt>Vector store</dt><dd>ChromaDB, cosine distance</dd></div>
+          <div><dt>Chunking</dt><dd>700 characters, 120 overlap</dd></div>
+          <div><dt>Retrieval</dt><dd>Top 3 passages</dd></div>
+          <div><dt>Generator</dt><dd>Llama 3.1 8B via Groq</dd></div>
+          <div><dt>Backend</dt><dd>FastAPI + LangChain</dd></div>
+        </dl>
+      </section>
+    </aside>
+
+    <main class="main">
+      <div id="feed" class="feed" aria-live="polite">
+        <div id="empty" class="empty">
+          <h2>Ask your documents anything.</h2>
+          <p>Upload a PDF, then ask a question. Answers use only what the document says, and each one shows the page it came from. If the document doesn’t cover it, Veritas says so.</p>
+        </div>
+      </div>
+
+      <div class="composer-wrap">
+        <div class="composer">
+          <textarea id="question" rows="1" maxlength="1000" placeholder="Upload a PDF to begin" aria-label="Your question" disabled></textarea>
+          <button type="button" id="send-btn" class="btn-send" disabled>Ask</button>
+        </div>
+        <p class="hint">Enter to send, Shift+Enter for a new line.</p>
+      </div>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
